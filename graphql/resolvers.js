@@ -3,13 +3,7 @@ import { getMovies, getById, addMovie, deleteMovie } from "./db"
 
 const resolvers ={
     Query:{
-        movies:()=> getMovies(),
-        movie:(_,{id})=> getById(id)// { id }는 args.id와 같은것
-},
-    Mutation: {
-        addMovie:(_,{name,score}) => addMovie(name,score),
-        deleteMovie: (_,{id}) => deleteMovie(id)//deleteMovie는 Boolean 값이기 때문에 아무것도 물어보지 않는다.
+        movies:(_, { rating, limit})=> getMovies(limit, rating)// _는 그냥 변수명이다. parent ,root 등등 뭐든 적을수 있다. 안쓰면 _로 써도 된다.
     }
-
 }
 export default resolvers
